@@ -1,5 +1,5 @@
-// Generator : SpinalHDL v1.3.7    git head : 9dfe3a4ece5cace077ca04fc44dd8b338fa1b171
-// Date      : 07/12/2019, 09:55:58
+// Generator : SpinalHDL v1.3.7    git head : d3dfabf1bd0ddd7e94034864527697073181e404
+// Date      : 07/12/2019, 20:43:53
 // Component : Ulx3sLinuxXip
 
 
@@ -5883,30 +5883,30 @@ module VexRiscv (
   wire [0:0] _zz_271_;
   wire [0:0] _zz_272_;
   wire [0:0] _zz_273_;
-  wire [51:0] _zz_274_;
-  wire [51:0] _zz_275_;
-  wire [51:0] _zz_276_;
-  wire [32:0] _zz_277_;
-  wire [51:0] _zz_278_;
-  wire [49:0] _zz_279_;
-  wire [51:0] _zz_280_;
-  wire [49:0] _zz_281_;
-  wire [51:0] _zz_282_;
-  wire [0:0] _zz_283_;
-  wire [30:0] _zz_284_;
-  wire [30:0] _zz_285_;
-  wire [30:0] _zz_286_;
-  wire [30:0] _zz_287_;
-  wire [0:0] _zz_288_;
-  wire [0:0] _zz_289_;
-  wire [0:0] _zz_290_;
-  wire [32:0] _zz_291_;
-  wire [31:0] _zz_292_;
-  wire [32:0] _zz_293_;
+  wire [0:0] _zz_274_;
+  wire [30:0] _zz_275_;
+  wire [30:0] _zz_276_;
+  wire [30:0] _zz_277_;
+  wire [30:0] _zz_278_;
+  wire [0:0] _zz_279_;
+  wire [0:0] _zz_280_;
+  wire [0:0] _zz_281_;
+  wire [0:0] _zz_282_;
+  wire [51:0] _zz_283_;
+  wire [51:0] _zz_284_;
+  wire [51:0] _zz_285_;
+  wire [32:0] _zz_286_;
+  wire [51:0] _zz_287_;
+  wire [49:0] _zz_288_;
+  wire [51:0] _zz_289_;
+  wire [49:0] _zz_290_;
+  wire [51:0] _zz_291_;
+  wire [0:0] _zz_292_;
+  wire [0:0] _zz_293_;
   wire [0:0] _zz_294_;
-  wire [0:0] _zz_295_;
-  wire [0:0] _zz_296_;
-  wire [0:0] _zz_297_;
+  wire [32:0] _zz_295_;
+  wire [31:0] _zz_296_;
+  wire [32:0] _zz_297_;
   wire [0:0] _zz_298_;
   wire [0:0] _zz_299_;
   wire [0:0] _zz_300_;
@@ -6280,6 +6280,7 @@ module VexRiscv (
   wire  _zz_668_;
   wire  execute_BYPASSABLE_MEMORY_STAGE;
   wire  decode_BYPASSABLE_MEMORY_STAGE;
+  wire  decode_CSR_READ_OPCODE;
   wire  decode_IS_DIV;
   wire  decode_MEMORY_MANAGMENT;
   wire `ShiftCtrlEnum_defaultEncoding_type _zz_1_;
@@ -6288,14 +6289,9 @@ module VexRiscv (
   wire `ShiftCtrlEnum_defaultEncoding_type _zz_3_;
   wire `ShiftCtrlEnum_defaultEncoding_type _zz_4_;
   wire `ShiftCtrlEnum_defaultEncoding_type _zz_5_;
-  wire [51:0] memory_MUL_LOW;
-  wire  decode_PREDICTION_HAD_BRANCHED2;
-  wire [31:0] decode_SRC2;
   wire  decode_BYPASSABLE_EXECUTE_STAGE;
-  wire  execute_BRANCH_DO;
-  wire  decode_CSR_WRITE_OPCODE;
   wire  decode_DO_EBREAK;
-  wire [31:0] execute_MUL_LL;
+  wire  decode_SRC2_FORCE_ZERO;
   wire  decode_SRC_LESS_UNSIGNED;
   wire  memory_MEMORY_WR;
   wire  decode_MEMORY_WR;
@@ -6311,30 +6307,35 @@ module VexRiscv (
   wire [31:0] decode_FORMAL_PC_NEXT;
   wire [1:0] memory_MEMORY_ADDRESS_LOW;
   wire [1:0] execute_MEMORY_ADDRESS_LOW;
+  wire  execute_BRANCH_DO;
   wire  decode_IS_RS2_SIGNED;
-  wire [33:0] execute_MUL_HL;
-  wire  execute_IS_DBUS_SHARING;
-  wire [31:0] execute_SHIFT_RIGHT;
-  wire  decode_CSR_READ_OPCODE;
-  wire  decode_MEMORY_LRSC;
+  wire  decode_PREDICTION_HAD_BRANCHED2;
   wire [31:0] execute_BRANCH_CALC;
+  wire [33:0] memory_MUL_HH;
+  wire [33:0] execute_MUL_HH;
+  wire  execute_IS_DBUS_SHARING;
+  wire [33:0] execute_MUL_LH;
+  wire  decode_MEMORY_LRSC;
+  wire [51:0] memory_MUL_LOW;
   wire [31:0] execute_REGFILE_WRITE_DATA;
+  wire [31:0] execute_MUL_LL;
+  wire [33:0] execute_MUL_HL;
   wire  decode_IS_CSR;
   wire  memory_IS_SFENCE_VMA;
   wire  execute_IS_SFENCE_VMA;
   wire  decode_IS_SFENCE_VMA;
+  wire  decode_CSR_WRITE_OPCODE;
   wire  memory_IS_MUL;
   wire  execute_IS_MUL;
   wire  decode_IS_MUL;
-  wire [33:0] execute_MUL_LH;
+  wire [31:0] decode_SRC2;
+  wire [31:0] execute_SHIFT_RIGHT;
   wire `AluCtrlEnum_defaultEncoding_type decode_ALU_CTRL;
   wire `AluCtrlEnum_defaultEncoding_type _zz_11_;
   wire `AluCtrlEnum_defaultEncoding_type _zz_12_;
   wire `AluCtrlEnum_defaultEncoding_type _zz_13_;
   wire  decode_MEMORY_AMO;
   wire [31:0] memory_PC;
-  wire [33:0] memory_MUL_HH;
-  wire [33:0] execute_MUL_HH;
   wire  decode_IS_RS1_SIGNED;
   wire `EnvCtrlEnum_defaultEncoding_type _zz_14_;
   wire `EnvCtrlEnum_defaultEncoding_type _zz_15_;
@@ -6344,7 +6345,6 @@ module VexRiscv (
   wire `EnvCtrlEnum_defaultEncoding_type _zz_18_;
   wire `EnvCtrlEnum_defaultEncoding_type _zz_19_;
   wire `EnvCtrlEnum_defaultEncoding_type _zz_20_;
-  wire  decode_SRC2_FORCE_ZERO;
   wire [31:0] decode_SRC1;
   wire  execute_DO_EBREAK;
   wire  decode_IS_EBREAK;
@@ -7106,45 +7106,48 @@ module VexRiscv (
   reg [31:0] DebugPlugin_busReadDataReg;
   reg  _zz_157_;
   reg  DebugPlugin_resetIt_regNext;
-  reg [31:0] decode_to_execute_SRC1;
   reg  decode_to_execute_MEMORY_ENABLE;
   reg  execute_to_memory_MEMORY_ENABLE;
   reg  memory_to_writeBack_MEMORY_ENABLE;
-  reg  decode_to_execute_SRC2_FORCE_ZERO;
+  reg [31:0] decode_to_execute_SRC1;
   reg `EnvCtrlEnum_defaultEncoding_type decode_to_execute_ENV_CTRL;
   reg `EnvCtrlEnum_defaultEncoding_type execute_to_memory_ENV_CTRL;
   reg `EnvCtrlEnum_defaultEncoding_type memory_to_writeBack_ENV_CTRL;
   reg  decode_to_execute_IS_RS1_SIGNED;
-  reg [33:0] execute_to_memory_MUL_HH;
-  reg [33:0] memory_to_writeBack_MUL_HH;
-  reg [31:0] decode_to_execute_RS1;
   reg [31:0] decode_to_execute_PC;
   reg [31:0] execute_to_memory_PC;
   reg [31:0] memory_to_writeBack_PC;
   reg  decode_to_execute_MEMORY_AMO;
   reg `AluCtrlEnum_defaultEncoding_type decode_to_execute_ALU_CTRL;
-  reg [33:0] execute_to_memory_MUL_LH;
+  reg [31:0] execute_to_memory_SHIFT_RIGHT;
+  reg [31:0] decode_to_execute_SRC2;
   reg  decode_to_execute_SRC_USE_SUB_LESS;
   reg  decode_to_execute_IS_MUL;
   reg  execute_to_memory_IS_MUL;
   reg  memory_to_writeBack_IS_MUL;
+  reg  decode_to_execute_CSR_WRITE_OPCODE;
   reg  decode_to_execute_IS_SFENCE_VMA;
   reg  execute_to_memory_IS_SFENCE_VMA;
   reg  memory_to_writeBack_IS_SFENCE_VMA;
   reg  decode_to_execute_IS_CSR;
+  reg [33:0] execute_to_memory_MUL_HL;
+  reg [31:0] execute_to_memory_MUL_LL;
   reg [31:0] execute_to_memory_REGFILE_WRITE_DATA;
   reg [31:0] memory_to_writeBack_REGFILE_WRITE_DATA;
-  reg [31:0] execute_to_memory_BRANCH_CALC;
+  reg [51:0] memory_to_writeBack_MUL_LOW;
   reg  decode_to_execute_MEMORY_LRSC;
-  reg  decode_to_execute_CSR_READ_OPCODE;
-  reg [31:0] execute_to_memory_SHIFT_RIGHT;
+  reg [33:0] execute_to_memory_MUL_LH;
   reg  execute_to_memory_IS_DBUS_SHARING;
   reg  memory_to_writeBack_IS_DBUS_SHARING;
   reg [31:0] decode_to_execute_INSTRUCTION;
   reg [31:0] execute_to_memory_INSTRUCTION;
   reg [31:0] memory_to_writeBack_INSTRUCTION;
-  reg [33:0] execute_to_memory_MUL_HL;
+  reg [33:0] execute_to_memory_MUL_HH;
+  reg [33:0] memory_to_writeBack_MUL_HH;
+  reg [31:0] execute_to_memory_BRANCH_CALC;
+  reg  decode_to_execute_PREDICTION_HAD_BRANCHED2;
   reg  decode_to_execute_IS_RS2_SIGNED;
+  reg  execute_to_memory_BRANCH_DO;
   reg [31:0] decode_to_execute_RS2;
   reg [1:0] execute_to_memory_MEMORY_ADDRESS_LOW;
   reg [1:0] memory_to_writeBack_MEMORY_ADDRESS_LOW;
@@ -7157,22 +7160,19 @@ module VexRiscv (
   reg  execute_to_memory_MEMORY_WR;
   reg  memory_to_writeBack_MEMORY_WR;
   reg  decode_to_execute_SRC_LESS_UNSIGNED;
-  reg [31:0] execute_to_memory_MUL_LL;
+  reg  decode_to_execute_SRC2_FORCE_ZERO;
   reg  decode_to_execute_DO_EBREAK;
-  reg  decode_to_execute_CSR_WRITE_OPCODE;
-  reg  execute_to_memory_BRANCH_DO;
+  reg [31:0] decode_to_execute_RS1;
   reg  decode_to_execute_BYPASSABLE_EXECUTE_STAGE;
   reg  decode_to_execute_REGFILE_WRITE_VALID;
   reg  execute_to_memory_REGFILE_WRITE_VALID;
   reg  memory_to_writeBack_REGFILE_WRITE_VALID;
-  reg [31:0] decode_to_execute_SRC2;
-  reg  decode_to_execute_PREDICTION_HAD_BRANCHED2;
-  reg [51:0] memory_to_writeBack_MUL_LOW;
   reg `ShiftCtrlEnum_defaultEncoding_type decode_to_execute_SHIFT_CTRL;
   reg `ShiftCtrlEnum_defaultEncoding_type execute_to_memory_SHIFT_CTRL;
   reg  decode_to_execute_MEMORY_MANAGMENT;
   reg  decode_to_execute_IS_DIV;
   reg  execute_to_memory_IS_DIV;
+  reg  decode_to_execute_CSR_READ_OPCODE;
   reg  decode_to_execute_BYPASSABLE_MEMORY_STAGE;
   reg  execute_to_memory_BYPASSABLE_MEMORY_STAGE;
   reg [2:0] _zz_158_;
@@ -7314,30 +7314,30 @@ module VexRiscv (
   assign _zz_271_ = _zz_84_[12 : 12];
   assign _zz_272_ = _zz_84_[3 : 3];
   assign _zz_273_ = _zz_84_[10 : 10];
-  assign _zz_274_ = ($signed(_zz_275_) + $signed(_zz_280_));
-  assign _zz_275_ = ($signed(_zz_276_) + $signed(_zz_278_));
-  assign _zz_276_ = (52'b0000000000000000000000000000000000000000000000000000);
-  assign _zz_277_ = {1'b0,memory_MUL_LL};
-  assign _zz_278_ = {{19{_zz_277_[32]}}, _zz_277_};
-  assign _zz_279_ = ({16'd0,memory_MUL_LH} <<< 16);
-  assign _zz_280_ = {{2{_zz_279_[49]}}, _zz_279_};
-  assign _zz_281_ = ({16'd0,memory_MUL_HL} <<< 16);
-  assign _zz_282_ = {{2{_zz_281_[49]}}, _zz_281_};
-  assign _zz_283_ = _zz_84_[28 : 28];
-  assign _zz_284_ = (decode_PC >>> 1);
-  assign _zz_285_ = (decode_PC >>> 1);
-  assign _zz_286_ = (decode_PC >>> 1);
-  assign _zz_287_ = (decode_PC >>> 1);
-  assign _zz_288_ = _zz_84_[31 : 31];
-  assign _zz_289_ = _zz_84_[4 : 4];
-  assign _zz_290_ = _zz_84_[32 : 32];
-  assign _zz_291_ = ($signed(_zz_293_) >>> execute_FullBarrelShifterPlugin_amplitude);
-  assign _zz_292_ = _zz_291_[31 : 0];
-  assign _zz_293_ = {((execute_SHIFT_CTRL == `ShiftCtrlEnum_defaultEncoding_SRA_1) && execute_FullBarrelShifterPlugin_reversed[31]),execute_FullBarrelShifterPlugin_reversed};
-  assign _zz_294_ = _zz_84_[13 : 13];
-  assign _zz_295_ = _zz_84_[34 : 34];
-  assign _zz_296_ = _zz_84_[7 : 7];
-  assign _zz_297_ = _zz_84_[17 : 17];
+  assign _zz_274_ = _zz_84_[28 : 28];
+  assign _zz_275_ = (decode_PC >>> 1);
+  assign _zz_276_ = (decode_PC >>> 1);
+  assign _zz_277_ = (decode_PC >>> 1);
+  assign _zz_278_ = (decode_PC >>> 1);
+  assign _zz_279_ = _zz_84_[31 : 31];
+  assign _zz_280_ = _zz_84_[4 : 4];
+  assign _zz_281_ = _zz_84_[32 : 32];
+  assign _zz_282_ = _zz_84_[13 : 13];
+  assign _zz_283_ = ($signed(_zz_284_) + $signed(_zz_289_));
+  assign _zz_284_ = ($signed(_zz_285_) + $signed(_zz_287_));
+  assign _zz_285_ = (52'b0000000000000000000000000000000000000000000000000000);
+  assign _zz_286_ = {1'b0,memory_MUL_LL};
+  assign _zz_287_ = {{19{_zz_286_[32]}}, _zz_286_};
+  assign _zz_288_ = ({16'd0,memory_MUL_LH} <<< 16);
+  assign _zz_289_ = {{2{_zz_288_[49]}}, _zz_288_};
+  assign _zz_290_ = ({16'd0,memory_MUL_HL} <<< 16);
+  assign _zz_291_ = {{2{_zz_290_[49]}}, _zz_290_};
+  assign _zz_292_ = _zz_84_[34 : 34];
+  assign _zz_293_ = _zz_84_[7 : 7];
+  assign _zz_294_ = _zz_84_[17 : 17];
+  assign _zz_295_ = ($signed(_zz_297_) >>> execute_FullBarrelShifterPlugin_amplitude);
+  assign _zz_296_ = _zz_295_[31 : 0];
+  assign _zz_297_ = {((execute_SHIFT_CTRL == `ShiftCtrlEnum_defaultEncoding_SRA_1) && execute_FullBarrelShifterPlugin_reversed[31]),execute_FullBarrelShifterPlugin_reversed};
   assign _zz_298_ = _zz_84_[33 : 33];
   assign _zz_299_ = _zz_84_[25 : 25];
   assign _zz_300_ = _zz_84_[23 : 23];
@@ -8576,22 +8576,18 @@ module VexRiscv (
 
   assign execute_BYPASSABLE_MEMORY_STAGE = decode_to_execute_BYPASSABLE_MEMORY_STAGE;
   assign decode_BYPASSABLE_MEMORY_STAGE = _zz_271_[0];
+  assign decode_CSR_READ_OPCODE = (decode_INSTRUCTION[13 : 7] != (7'b0100000));
   assign decode_IS_DIV = _zz_272_[0];
   assign decode_MEMORY_MANAGMENT = _zz_273_[0];
   assign _zz_1_ = _zz_2_;
   assign decode_SHIFT_CTRL = _zz_3_;
   assign _zz_4_ = _zz_5_;
-  assign memory_MUL_LOW = ($signed(_zz_274_) + $signed(_zz_282_));
-  assign decode_PREDICTION_HAD_BRANCHED2 = IBusCachedPlugin_decodePrediction_cmd_hadBranch;
-  assign decode_SRC2 = _zz_105_;
-  assign decode_BYPASSABLE_EXECUTE_STAGE = _zz_283_[0];
-  assign execute_BRANCH_DO = ((execute_PREDICTION_HAD_BRANCHED2 != execute_BRANCH_COND_RESULT) || execute_BranchPlugin_missAlignedTarget);
-  assign decode_CSR_WRITE_OPCODE = (! (((decode_INSTRUCTION[14 : 13] == (2'b01)) && (decode_INSTRUCTION[19 : 15] == (5'b00000))) || ((decode_INSTRUCTION[14 : 13] == (2'b11)) && (decode_INSTRUCTION[19 : 15] == (5'b00000)))));
-  assign decode_DO_EBREAK = ((! DebugPlugin_haltIt) && (decode_IS_EBREAK || ((((1'b0 || (DebugPlugin_hardwareBreakpoints_0_valid && (DebugPlugin_hardwareBreakpoints_0_pc == _zz_284_))) || (DebugPlugin_hardwareBreakpoints_1_valid && (DebugPlugin_hardwareBreakpoints_1_pc == _zz_285_))) || (DebugPlugin_hardwareBreakpoints_2_valid && (DebugPlugin_hardwareBreakpoints_2_pc == _zz_286_))) || (DebugPlugin_hardwareBreakpoints_3_valid && (DebugPlugin_hardwareBreakpoints_3_pc == _zz_287_)))));
-  assign execute_MUL_LL = (execute_MulPlugin_aULow * execute_MulPlugin_bULow);
-  assign decode_SRC_LESS_UNSIGNED = _zz_288_[0];
+  assign decode_BYPASSABLE_EXECUTE_STAGE = _zz_274_[0];
+  assign decode_DO_EBREAK = ((! DebugPlugin_haltIt) && (decode_IS_EBREAK || ((((1'b0 || (DebugPlugin_hardwareBreakpoints_0_valid && (DebugPlugin_hardwareBreakpoints_0_pc == _zz_275_))) || (DebugPlugin_hardwareBreakpoints_1_valid && (DebugPlugin_hardwareBreakpoints_1_pc == _zz_276_))) || (DebugPlugin_hardwareBreakpoints_2_valid && (DebugPlugin_hardwareBreakpoints_2_pc == _zz_277_))) || (DebugPlugin_hardwareBreakpoints_3_valid && (DebugPlugin_hardwareBreakpoints_3_pc == _zz_278_)))));
+  assign decode_SRC2_FORCE_ZERO = (decode_SRC_ADD_ZERO && (! decode_SRC_USE_SUB_LESS));
+  assign decode_SRC_LESS_UNSIGNED = _zz_279_[0];
   assign memory_MEMORY_WR = execute_to_memory_MEMORY_WR;
-  assign decode_MEMORY_WR = _zz_289_[0];
+  assign decode_MEMORY_WR = _zz_280_[0];
   assign _zz_6_ = _zz_7_;
   assign decode_ALU_BITWISE_CTRL = _zz_8_;
   assign _zz_9_ = _zz_10_;
@@ -8601,34 +8597,38 @@ module VexRiscv (
   assign decode_FORMAL_PC_NEXT = (decode_PC + (32'b00000000000000000000000000000100));
   assign memory_MEMORY_ADDRESS_LOW = execute_to_memory_MEMORY_ADDRESS_LOW;
   assign execute_MEMORY_ADDRESS_LOW = _zz_168_[1 : 0];
-  assign decode_IS_RS2_SIGNED = _zz_290_[0];
-  assign execute_MUL_HL = ($signed(execute_MulPlugin_aHigh) * $signed(execute_MulPlugin_bSLow));
-  assign execute_IS_DBUS_SHARING = (MmuPlugin_dBusAccess_cmd_valid && MmuPlugin_dBusAccess_cmd_ready);
-  assign execute_SHIFT_RIGHT = _zz_292_;
-  assign decode_CSR_READ_OPCODE = (decode_INSTRUCTION[13 : 7] != (7'b0100000));
-  assign decode_MEMORY_LRSC = _zz_294_[0];
+  assign execute_BRANCH_DO = ((execute_PREDICTION_HAD_BRANCHED2 != execute_BRANCH_COND_RESULT) || execute_BranchPlugin_missAlignedTarget);
+  assign decode_IS_RS2_SIGNED = _zz_281_[0];
+  assign decode_PREDICTION_HAD_BRANCHED2 = IBusCachedPlugin_decodePrediction_cmd_hadBranch;
   assign execute_BRANCH_CALC = {execute_BranchPlugin_branchAdder[31 : 1],(1'b0)};
+  assign memory_MUL_HH = execute_to_memory_MUL_HH;
+  assign execute_MUL_HH = ($signed(execute_MulPlugin_aHigh) * $signed(execute_MulPlugin_bHigh));
+  assign execute_IS_DBUS_SHARING = (MmuPlugin_dBusAccess_cmd_valid && MmuPlugin_dBusAccess_cmd_ready);
+  assign execute_MUL_LH = ($signed(execute_MulPlugin_aSLow) * $signed(execute_MulPlugin_bHigh));
+  assign decode_MEMORY_LRSC = _zz_282_[0];
+  assign memory_MUL_LOW = ($signed(_zz_283_) + $signed(_zz_291_));
   assign execute_REGFILE_WRITE_DATA = _zz_99_;
-  assign decode_IS_CSR = _zz_295_[0];
+  assign execute_MUL_LL = (execute_MulPlugin_aULow * execute_MulPlugin_bULow);
+  assign execute_MUL_HL = ($signed(execute_MulPlugin_aHigh) * $signed(execute_MulPlugin_bSLow));
+  assign decode_IS_CSR = _zz_292_[0];
   assign memory_IS_SFENCE_VMA = execute_to_memory_IS_SFENCE_VMA;
   assign execute_IS_SFENCE_VMA = decode_to_execute_IS_SFENCE_VMA;
-  assign decode_IS_SFENCE_VMA = _zz_296_[0];
+  assign decode_IS_SFENCE_VMA = _zz_293_[0];
+  assign decode_CSR_WRITE_OPCODE = (! (((decode_INSTRUCTION[14 : 13] == (2'b01)) && (decode_INSTRUCTION[19 : 15] == (5'b00000))) || ((decode_INSTRUCTION[14 : 13] == (2'b11)) && (decode_INSTRUCTION[19 : 15] == (5'b00000)))));
   assign memory_IS_MUL = execute_to_memory_IS_MUL;
   assign execute_IS_MUL = decode_to_execute_IS_MUL;
-  assign decode_IS_MUL = _zz_297_[0];
-  assign execute_MUL_LH = ($signed(execute_MulPlugin_aSLow) * $signed(execute_MulPlugin_bHigh));
+  assign decode_IS_MUL = _zz_294_[0];
+  assign decode_SRC2 = _zz_105_;
+  assign execute_SHIFT_RIGHT = _zz_296_;
   assign decode_ALU_CTRL = _zz_11_;
   assign _zz_12_ = _zz_13_;
   assign decode_MEMORY_AMO = _zz_298_[0];
   assign memory_PC = execute_to_memory_PC;
-  assign memory_MUL_HH = execute_to_memory_MUL_HH;
-  assign execute_MUL_HH = ($signed(execute_MulPlugin_aHigh) * $signed(execute_MulPlugin_bHigh));
   assign decode_IS_RS1_SIGNED = _zz_299_[0];
   assign _zz_14_ = _zz_15_;
   assign _zz_16_ = _zz_17_;
   assign decode_ENV_CTRL = _zz_18_;
   assign _zz_19_ = _zz_20_;
-  assign decode_SRC2_FORCE_ZERO = (decode_SRC_ADD_ZERO && (! decode_SRC_USE_SUB_LESS));
   assign decode_SRC1 = _zz_100_;
   assign execute_DO_EBREAK = decode_to_execute_DO_EBREAK;
   assign decode_IS_EBREAK = _zz_300_[0];
@@ -12016,9 +12016,6 @@ module VexRiscv (
       end
     end
     if((! execute_arbitration_isStuck))begin
-      decode_to_execute_SRC1 <= decode_SRC1;
-    end
-    if((! execute_arbitration_isStuck))begin
       decode_to_execute_MEMORY_ENABLE <= decode_MEMORY_ENABLE;
     end
     if((! memory_arbitration_isStuck))begin
@@ -12028,7 +12025,7 @@ module VexRiscv (
       memory_to_writeBack_MEMORY_ENABLE <= memory_MEMORY_ENABLE;
     end
     if((! execute_arbitration_isStuck))begin
-      decode_to_execute_SRC2_FORCE_ZERO <= decode_SRC2_FORCE_ZERO;
+      decode_to_execute_SRC1 <= decode_SRC1;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_ENV_CTRL <= _zz_19_;
@@ -12041,15 +12038,6 @@ module VexRiscv (
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_IS_RS1_SIGNED <= decode_IS_RS1_SIGNED;
-    end
-    if((! memory_arbitration_isStuck))begin
-      execute_to_memory_MUL_HH <= execute_MUL_HH;
-    end
-    if((! writeBack_arbitration_isStuck))begin
-      memory_to_writeBack_MUL_HH <= memory_MUL_HH;
-    end
-    if((! execute_arbitration_isStuck))begin
-      decode_to_execute_RS1 <= _zz_32_;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_PC <= _zz_29_;
@@ -12067,7 +12055,10 @@ module VexRiscv (
       decode_to_execute_ALU_CTRL <= _zz_12_;
     end
     if((! memory_arbitration_isStuck))begin
-      execute_to_memory_MUL_LH <= execute_MUL_LH;
+      execute_to_memory_SHIFT_RIGHT <= execute_SHIFT_RIGHT;
+    end
+    if((! execute_arbitration_isStuck))begin
+      decode_to_execute_SRC2 <= decode_SRC2;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_SRC_USE_SUB_LESS <= decode_SRC_USE_SUB_LESS;
@@ -12082,6 +12073,9 @@ module VexRiscv (
       memory_to_writeBack_IS_MUL <= memory_IS_MUL;
     end
     if((! execute_arbitration_isStuck))begin
+      decode_to_execute_CSR_WRITE_OPCODE <= decode_CSR_WRITE_OPCODE;
+    end
+    if((! execute_arbitration_isStuck))begin
       decode_to_execute_IS_SFENCE_VMA <= decode_IS_SFENCE_VMA;
     end
     if((! memory_arbitration_isStuck))begin
@@ -12094,19 +12088,22 @@ module VexRiscv (
       decode_to_execute_IS_CSR <= decode_IS_CSR;
     end
     if((! memory_arbitration_isStuck))begin
-      execute_to_memory_REGFILE_WRITE_DATA <= _zz_25_;
+      execute_to_memory_MUL_HL <= execute_MUL_HL;
     end
     if((! memory_arbitration_isStuck))begin
-      execute_to_memory_BRANCH_CALC <= execute_BRANCH_CALC;
+      execute_to_memory_MUL_LL <= execute_MUL_LL;
+    end
+    if((! memory_arbitration_isStuck))begin
+      execute_to_memory_REGFILE_WRITE_DATA <= _zz_25_;
+    end
+    if((! writeBack_arbitration_isStuck))begin
+      memory_to_writeBack_MUL_LOW <= memory_MUL_LOW;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_MEMORY_LRSC <= decode_MEMORY_LRSC;
     end
-    if((! execute_arbitration_isStuck))begin
-      decode_to_execute_CSR_READ_OPCODE <= decode_CSR_READ_OPCODE;
-    end
     if((! memory_arbitration_isStuck))begin
-      execute_to_memory_SHIFT_RIGHT <= execute_SHIFT_RIGHT;
+      execute_to_memory_MUL_LH <= execute_MUL_LH;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_INSTRUCTION <= decode_INSTRUCTION;
@@ -12115,10 +12112,22 @@ module VexRiscv (
       execute_to_memory_INSTRUCTION <= execute_INSTRUCTION;
     end
     if((! memory_arbitration_isStuck))begin
-      execute_to_memory_MUL_HL <= execute_MUL_HL;
+      execute_to_memory_MUL_HH <= execute_MUL_HH;
+    end
+    if((! writeBack_arbitration_isStuck))begin
+      memory_to_writeBack_MUL_HH <= memory_MUL_HH;
+    end
+    if((! memory_arbitration_isStuck))begin
+      execute_to_memory_BRANCH_CALC <= execute_BRANCH_CALC;
+    end
+    if((! execute_arbitration_isStuck))begin
+      decode_to_execute_PREDICTION_HAD_BRANCHED2 <= decode_PREDICTION_HAD_BRANCHED2;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_IS_RS2_SIGNED <= decode_IS_RS2_SIGNED;
+    end
+    if((! memory_arbitration_isStuck))begin
+      execute_to_memory_BRANCH_DO <= execute_BRANCH_DO;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_RS2 <= _zz_30_;
@@ -12156,17 +12165,14 @@ module VexRiscv (
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_SRC_LESS_UNSIGNED <= decode_SRC_LESS_UNSIGNED;
     end
-    if((! memory_arbitration_isStuck))begin
-      execute_to_memory_MUL_LL <= execute_MUL_LL;
+    if((! execute_arbitration_isStuck))begin
+      decode_to_execute_SRC2_FORCE_ZERO <= decode_SRC2_FORCE_ZERO;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_DO_EBREAK <= decode_DO_EBREAK;
     end
     if((! execute_arbitration_isStuck))begin
-      decode_to_execute_CSR_WRITE_OPCODE <= decode_CSR_WRITE_OPCODE;
-    end
-    if((! memory_arbitration_isStuck))begin
-      execute_to_memory_BRANCH_DO <= execute_BRANCH_DO;
+      decode_to_execute_RS1 <= _zz_32_;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_BYPASSABLE_EXECUTE_STAGE <= decode_BYPASSABLE_EXECUTE_STAGE;
@@ -12179,15 +12185,6 @@ module VexRiscv (
     end
     if((! writeBack_arbitration_isStuck))begin
       memory_to_writeBack_REGFILE_WRITE_VALID <= memory_REGFILE_WRITE_VALID;
-    end
-    if((! execute_arbitration_isStuck))begin
-      decode_to_execute_SRC2 <= decode_SRC2;
-    end
-    if((! execute_arbitration_isStuck))begin
-      decode_to_execute_PREDICTION_HAD_BRANCHED2 <= decode_PREDICTION_HAD_BRANCHED2;
-    end
-    if((! writeBack_arbitration_isStuck))begin
-      memory_to_writeBack_MUL_LOW <= memory_MUL_LOW;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_SHIFT_CTRL <= _zz_4_;
@@ -12203,6 +12200,9 @@ module VexRiscv (
     end
     if((! memory_arbitration_isStuck))begin
       execute_to_memory_IS_DIV <= execute_IS_DIV;
+    end
+    if((! execute_arbitration_isStuck))begin
+      decode_to_execute_CSR_READ_OPCODE <= decode_CSR_READ_OPCODE;
     end
     if((! execute_arbitration_isStuck))begin
       decode_to_execute_BYPASSABLE_MEMORY_STAGE <= decode_BYPASSABLE_MEMORY_STAGE;
