@@ -45,7 +45,7 @@ void init() {
 	memcpy((void *) OS_CALL, (const void *) FLASH_IMAGE_START, FLASH_IMAGE_LENGTH);
 	memcpy((void *) DTB, (const void *) FLASH_DTB_START,  FLASH_DTB_LENGTH);
 	putString("Copied kernel, dtb: ");
-	putHex((*((uint32_t *) (FLASH_DTB_START))));
+	putHex((*((uint32_t *) (DTB))));
 	putString("\n");
 	uint32_t sp = (uint32_t) (&_sp);
 	csr_write(mtvec, trapEntry);
