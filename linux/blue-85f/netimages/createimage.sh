@@ -1,4 +1,4 @@
-# Use losetup -f to find free loop devices
+# Use losetup -f to find free `loop devices
 LOOP_DEVICE1=/dev/loop20
 LOOP_DEVICE2=/dev/loop21
 
@@ -19,7 +19,7 @@ sudo losetup ${LOOP_DEVICE1} image
 # Set loop device 2 to the start of partition
 sudo losetup -o $((512*2048)) ${LOOP_DEVICE2} ${LOOP_DEVICE1}
 
-# Create an ext4 partition
+# Create an ext2 partition
 sudo mkfs.ext2 ${LOOP_DEVICE2}
 
 # Mount the partition
@@ -28,6 +28,26 @@ sudo mount ${LOOP_DEVICE2} tmp
 
 # Extract the rootfs files
 sudo tar xf ~/buildroot/output/images/rootfs.tar -C tmp
+
+# Put u-boot images in /boot
+sudo mkdir tmp/boot
+sudo cp uImage tmp/boot
+sudo cp dtb tmp/boot
+
+# Put static binaries in /bin
+sudo cp ../../static-bin/* tmp/bin
+
+# create /etc/hosts
+sudo cp hosts tmp/etc/hosts
+
+# create network interfaces
+sudo cp interfaces tmp/etc/network/interfaces
+
+# create .slirprc file
+sudo cp .slirprc tmp/root
+
+# script for creating dropbear key
+sudo cp create_keys.sh tmp/root
 
 # Ummount the partition
 sudo umount tmp
