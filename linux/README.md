@@ -1,4 +1,4 @@
-# Running SaxonSoc Linux of the ULX3S
+# Running SaxonSoc Linux on the ULX3S
 
 ## Using pre-built binaries
 
@@ -18,17 +18,20 @@ The following boards are currently supported:
 
 The ftp put commands are:
 
+```
 put 12f/images/dtb@0x3fc000 flash@0x3fc000
 put 12f/images/Image@0x19000 flash@0x19000
 put 12f/images/sdcard sd@0
 put 12f/saxonsoc-ulx3s-12f.bit fpga
+```
 
 ### Blue 85F
 
 The ftp put commands are:
 
+```
 put blue-85f/netimages/dtb.uart@0xffc000 flash@0xffc000
 put blue-85f/netimages/Image@0x200000 flash@0x200000
 put blue-85f/netimages/sdcard.telnet sd@0
 put blue-85f/saxonsoc-ulx3s-85f.bit fpga
-
+```
