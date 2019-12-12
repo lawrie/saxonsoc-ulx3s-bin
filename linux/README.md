@@ -35,3 +35,13 @@ put blue-85f/netimages/Image@0x200000 flash@0x200000
 put blue-85f/netimages/sdcard.telnet sd@0
 put blue-85f/saxonsoc-ulx3s-85f.bit fpga
 ```
+
+## Connecting to Linux
+
+To connect to Linux, run:
+
+```
+screen /dev/ttyUSB0 115200
+```
+
+Then log in as root with no password.
