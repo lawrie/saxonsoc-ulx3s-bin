@@ -1,6 +1,6 @@
 # Use losetup -f to find free `loop devices
-LOOP_DEVICE1=/dev/loop20
-LOOP_DEVICE2=/dev/loop21
+LOOP_DEVICE1=/dev/loop21
+LOOP_DEVICE2=/dev/loop22
 
 # Create a 32MB image file
 rm image
