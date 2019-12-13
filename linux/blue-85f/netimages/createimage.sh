@@ -35,7 +35,7 @@ sudo cp uImage tmp/boot
 sudo cp dtb tmp/boot
 
 # Put static binaries in /bin
-sudo cp ../../static-bin/* tmp/bin
+sudo cp ../../static-bin/slirp tmp/bin
 
 # create /etc/hosts
 sudo cp hosts tmp/etc/hosts
