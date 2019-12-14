@@ -34,17 +34,17 @@ sudo mkdir tmp/boot
 sudo cp ~/buildroot/output/images/uImage tmp/boot
 sudo cp ~/buildroot/output/images/dtb tmp/boot
 
-# Put static binaries in /bin
-#sudo cp ../../static-bin/slirp tmp/bin
+# Put slirp static binary in /bin
+sudo cp ../../static-bin/slirp tmp/bin
 
 # create /etc/hosts
-#sudo cp hosts tmp/etc/hosts
+sudo cp hosts tmp/etc/hosts
 
 # create network interfaces
-#sudo cp interfaces tmp/etc/network/interfaces
+sudo cp interfaces tmp/etc/network/interfaces
 
 # create .slirprc file
-#sudo cp .slirprc tmp/root
+sudo cp .slirprc tmp/root
 
 # script for creating dropbear key
 #sudo cp create_keys.sh tmp/root
