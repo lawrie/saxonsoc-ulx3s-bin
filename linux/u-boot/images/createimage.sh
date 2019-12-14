@@ -47,7 +47,7 @@ sudo cp interfaces tmp/etc/network/interfaces
 sudo cp .slirprc tmp/root
 
 # script for creating dropbear key
-#sudo cp create_keys.sh tmp/root
+sudo cp create_keys.sh tmp/root
 
 # Ummount the partition
 sudo umount tmp
