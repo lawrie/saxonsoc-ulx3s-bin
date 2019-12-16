@@ -76,7 +76,7 @@ GN17 - SCK
 You can access GPIO pins via /sys/class/gpio
 
 There are 24 pins that are mapped on to GPIO numbers 488 - 511.
-The first 8 map to the leds, although led 1 is not connected as gpio[1] is currently used fir the interrupt on the ENC28J^) device.
+The first 8 map to the leds, although led 1 is not connected as gpio[1] is currently used fir the interrupt on the ENC28J60 device.
 
 `echo <number> > export` makes the pin available to gpio
 `echo <number> > unexport` makes it unavailable.
