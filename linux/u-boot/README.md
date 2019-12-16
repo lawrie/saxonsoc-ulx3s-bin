@@ -97,3 +97,8 @@ do
 done
 echo 488 > unexport
 ```
+
+## Build for source
+
+To build everything from source follow [these instructions](https://github.com/SpinalHDL/SaxonSoc/blob/dev/bsp/Ulx3sLinuxUboot/README.md)
+
