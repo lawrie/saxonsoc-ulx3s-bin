@@ -56,3 +56,19 @@ If you see the "=>" u-boot prompt, type "boot".
 
 You can press btn 0, to reboot.
 
+## Ethernet 
+
+You can use an [ENC28J60](https://www.ebay.co.uk/i/303266147218) module for connection to the internet va Ethernet.
+
+The pin mapping, which is suitable for connecting via a Pmod, is:
+
+```
+GP14 - CS
+GN14 - MOSI
+GP15 - INT
+GN15 - MISO
+GN17 - SCK
+3.3V - RST
+```
+
+
