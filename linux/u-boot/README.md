@@ -71,4 +71,29 @@ GN17 - SCK
 3.3V - RST
 ```
 
+## GPIO
 
+You can access GPIO pins via /sys/class/gpio
+
+There are 24 pins that are mapped on to GPIO numbers 488 - 511.
+The first 8 map to the leds, although led 1 is not connected as gpio[1] is currently used fir the interrupt on the ENC28J^) device.
+
+`echo <number> > export` makes the pin available to gpio
+`echo <number> > unexport` makes it unavailable.
+`value` is used to read or write the pin.
+`direction` can be used to set the pin to `in` or `out`.
+
+For example, to blink led 0:
+
+```
+#!/bin/sh
+cd /sys/class/gpio
+echo 488 > export
+echo out > gpio488/direction
+for i in 1 0 1 0 1 0
+do
+  sleep  0.1
+  echo   $i > gpio488/value
+done
+echo 488 > unexport
+```
