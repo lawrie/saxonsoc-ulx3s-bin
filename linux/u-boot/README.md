@@ -74,7 +74,7 @@ GND  - GND  # Next to 3.3
 NC   - 5v
 NC   - GND  # Next to 5V
 NC   - CLK
-NC   - NC
+NC   - WOL
 
 ```
 
