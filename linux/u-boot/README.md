@@ -64,11 +64,18 @@ The pin mapping, which is suitable for connecting via a Pmod, is:
 
 ```
 GP14 - CS
-GN14 - MOSI
+GN14 - SI   # MOSI
 GP15 - INT
-GN15 - MISO
+GN15 - SO   # MISO
 GN17 - SCK
 3.3V - RST
+3.3V - 3.3
+GND  - GND  # Next to 3.3
+NC   - 5v
+NC   - GND  # Next to 5V
+NC   - CLK
+NC   - NC
+
 ```
 
 ## GPIO
