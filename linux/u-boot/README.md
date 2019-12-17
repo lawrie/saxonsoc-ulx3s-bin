@@ -58,7 +58,7 @@ You can press btn 0, to reboot.
 
 ## Ethernet 
 
-You can use an [ENC28J60](https://www.ebay.co.uk/i/303266147218) module for connection to the internet va Ethernet.
+You can use an [ENC28J60](https://www.ebay.co.uk/itm/1-x-ENC28J60-LAN-Ethernet-Network-Board-Module-For-Arduino-SPI-Interface/262699636321) module for connection to the internet va Ethernet.
 
 The pin mapping, which is suitable for connecting via a Pmod, is:
 
