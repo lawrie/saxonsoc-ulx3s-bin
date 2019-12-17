@@ -33,6 +33,7 @@ sudo tar xf ~/buildroot/output/images/rootfs.tar -C tmp
 sudo mkdir tmp/boot
 sudo cp ~/buildroot/output/images/uImage tmp/boot
 sudo cp ~/buildroot/output/images/dtb64 tmp/boot/dtb
+sudo cp ~/buildroot/board/spinal/saxon_ulx3s/spinal_saxon_ulx3s_64.dts tmp/boot/dts
 
 # Put slirp static binary in /bin
 sudo cp ../../static-bin/slirp tmp/bin
