@@ -1,6 +1,6 @@
 # Use losetup -f to find free `loop devices
-LOOP_DEVICE1=/dev/loop21
-LOOP_DEVICE2=/dev/loop22
+LOOP_DEVICE1=/dev/loop20
+LOOP_DEVICE2=/dev/loop21
 
 # Create a 32MB image file
 rm image
@@ -33,6 +33,7 @@ sudo tar xf ~/buildroot/output/images/rootfs.tar -C tmp
 sudo mkdir tmp/boot
 sudo cp ~/buildroot/output/images/uImage tmp/boot
 sudo cp ~/buildroot/output/images/dtb tmp/boot
+sudo cp ~/buildroot/board/spinal/saxon_ulx3s/spinal_saxon_ulx3s.dts tmp/boot/dts
 
 # Put slirp static binary in /bin
 sudo cp ../../static-bin/slirp tmp/bin
