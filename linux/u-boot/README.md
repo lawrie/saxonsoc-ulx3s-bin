@@ -18,8 +18,8 @@ The ftp put commands are:
 
 ```
 put images/bios.bin@0x300000 flash@0x300000
-put images/uboot.bin@0x310000 flash@0x310000
-put images/sdcard sd@0
+put images/u-boot.bin@0x310000 flash@0x310000
+put images/sdimage sd@0
 put saxonsoc-ulx3s-linux-12f.bit fpga
 ```
 
@@ -28,7 +28,7 @@ put saxonsoc-ulx3s-linux-12f.bit fpga
 The ftp commands for the 85F are the same as above, except that if you have 64MB of SDRAM installed, do:
 
 ```
-put images/sdcard64 sd@0
+put images/sdimage64 sd@0
 put saxonsoc-ulx3s-linux-85f-64.bit fpga
 ```
 
