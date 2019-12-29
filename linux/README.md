@@ -32,7 +32,7 @@ The ftp put commands are:
 ```
 put blue-85f/netimages/dtb.uart@0xffc000 flash@0xffc000
 put blue-85f/netimages/Image@0x200000 flash@0x200000
-put blue-85f/netimages/sdcard.telnet sd@0
+put blue-85f/netimages/sdimage.telnetd sd@0
 put blue-85f/saxonsoc-ulx3s-85f.bit fpga
 ```
 
