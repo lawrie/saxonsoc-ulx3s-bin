@@ -1,6 +1,0 @@
-baudrate 115200
-ppp
-asyncmap 000a0000
-escape ff
-log start
-
