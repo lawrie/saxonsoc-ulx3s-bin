@@ -9,6 +9,8 @@ To run SaxonSoc Linux using u-boot, you need to load the bios (machineModeSbi) a
 The following boards are currently supported:
 
 - 12F
+- 25F
+- 45F
 - Blue 85F board with 64MB SDRAM
 - Green 85F board with 32MB of SDRAM
 
@@ -38,6 +40,17 @@ and if you have 32MB of SDRAM installed:
 
 ```
 put saxonsoc-ulx3s-linux-85f-32.bit fpga
+```
+
+### 45F without ESP32
+
+without ESP32, you need to prepare sd card manually and uploading the rest with ujprog. You also need to change bios and u-boot to img extension. Example for 45f:
+```
+cp images/bios.bin@0x300000 bios.bin@0x300000.img
+cp images/u-boot.bin@0x310000 u-boot.bin@0x310000.img
+ujprog -j FLASH -f 0x300000 bios.bin@0x300000.img
+ujprog -j FLASH -f 0x310000 u-boot.bin@0x310000.img
+ujprog saxonsoc-ulx3s-linux-45f.bit
 ```
 
 ## Connecting to Linux
