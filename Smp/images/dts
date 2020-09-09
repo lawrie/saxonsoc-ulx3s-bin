@@ -1,0 +1,176 @@
+
+
+/dts-v1/;
+//include/ "dt-bindings/interrupt-controller/irq.h"
+//include/ "dt-bindings/gpio/gpio.h"
+
+
+
+/ {
+    #address-cells = <0x1>;
+    #size-cells = <0x1>;
+    compatible = "spinal,vexriscv";
+    model = "spinal,vexriscv_sim";
+
+    chosen {
+        bootargs = "rootwait console=hvc0 earlycon=sbi root=/dev/mmcblk0p2 init=/sbin/init mmc_core.use_spi_crc=0";
+    };
+
+
+    cpus {
+        #address-cells = <0x1>;
+        #size-cells = <0x0>;
+        timebase-frequency = <50000000>;
+            cpu@0 {
+                device_type = "cpu";
+                compatible = "riscv";
+                riscv,isa = "rv32im";
+                mmu-type = "riscv,sv32";
+                reg = <0>;
+                status = "okay";
+                L0: interrupt-controller {
+                    #interrupt-cells = <0x00000001>;
+                    interrupt-controller;
+                    compatible = "riscv,cpu-intc";
+                };
+            };
+            cpu@1 {
+                device_type = "cpu";
+                compatible = "riscv";
+                riscv,isa = "rv32im";
+                mmu-type = "riscv,sv32";
+                reg = <1>;
+                status = "okay";
+                L1: interrupt-controller {
+                    #interrupt-cells = <0x00000001>;
+                    interrupt-controller;
+                    compatible = "riscv,cpu-intc";
+                };
+            };
+            cpu@2 {
+                device_type = "cpu";
+                compatible = "riscv";
+                riscv,isa = "rv32im";
+                mmu-type = "riscv,sv32";
+                reg = <2>;
+                status = "okay";
+                L2: interrupt-controller {
+                    #interrupt-cells = <0x00000001>;
+                    interrupt-controller;
+                    compatible = "riscv,cpu-intc";
+                };
+            };
+        };
+
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x80000000 0x04000000>;
+    };
+
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		opensbi: sbi@80F80000 {
+			reg = <0x80F80000 0x80000>;
+		};
+	};
+
+	clocks {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		apbA_clock: clock@1 {
+			compatible = "fixed-clock";
+			reg = <1 0>;
+			#clock-cells = <0>;
+			clock-frequency = <50000000>;
+		};
+	};
+
+    apbA@10000000 {
+        compatible = "simple-bus";
+        #address-cells = <0x1>;
+        #size-cells = <0x1>;
+        ranges = <0x0 0x10000000 0x01000000>;
+
+        plic: interrupt-controller@c00000 {
+            compatible = "sifive,plic-1.0.0", "sifive,fu540-c000-plic";
+            #interrupt-cells = <1>;
+            interrupt-controller;
+            interrupts-extended = <&L1 11 &L1 9>;
+            reg = <0x00C00000 0x400000>;
+            riscv,ndev = <32>;
+        };
+
+        gpioA: gpio@0 {
+	        compatible = "spinal-lib,gpio-1.0";
+	        interrupt-parent = <&plic>;
+	        ngpio = <24>;
+	        interrupts = <4 5 6 7>;
+	        reg = <0x000000 0x1000>;
+	        gpio-controller;
+	        #gpio-cells = <2>;
+	        interrupt-controller;
+	        #interrupt-cells = <2>;
+        };
+
+        uartB: ttySpinal@11000 {
+                compatible = "spinal-lib,uart-1.0";
+                reg = <0x11000 0x1000>;
+                clocks = <&apbA_clock 0>;
+                //interrupt-parent = <&plic>;
+                //interrupts = <2>;
+        };
+
+        spiA: spi@20000 {
+            compatible = "spinal-lib,spi-1.0";
+            #address-cells = <1>;
+            #size-cells = <0>;   
+            reg = <0x020000 0x1000>;
+            clocks = <&apbA_clock 0>;
+            cmd_fifo_depth = <256>;
+            rsp_fifo_depth = <256>;
+            cs-gpios = <0>, <0>, <&gpioA 14 0>;
+
+	        flash: flash@0 {
+	            #address-cells = <1>;
+	            #size-cells = <1>;
+	            compatible = "spi-nor";
+	            reg = <0>;
+	            spi-max-frequency = <10000000>;
+	            partition@0 {
+	                label = "fpga_bitstream";
+	                reg = <0x000000 0x400000>;
+	            };
+	            partition@1 {
+	                label = "opensbi";
+	                reg = <0x340000 0x040000>;
+	            };
+	            partition@2 {
+	                label = "uboot";
+	                reg = <0x380000 0x080000>;
+	            };
+	        };
+
+            mmc-slot@1 {
+                compatible = "mmc-spi-slot";
+                reg = <1>;
+                voltage-ranges = <3300 3300>;
+                spi-max-frequency = <25000000>;
+            };
+
+            enc28j60: ethernet@2 {
+                compatible = "microchip,enc28j60";
+                reg = <2>;
+                interrupt-parent = <&gpioA>;
+                interrupts = <1 2>; //IRQ_TYPE_EDGE_FALLING
+                spi-max-frequency = <2000000>;
+            };
+        };
+    };
+};
+
+
