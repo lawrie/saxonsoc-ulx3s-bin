@@ -21,50 +21,65 @@
         #address-cells = <0x1>;
         #size-cells = <0x0>;
         timebase-frequency = <52000000>;
-            cpu@0 {
-                device_type = "cpu";
-                compatible = "riscv";
-                riscv,isa = "rv32im";
-                mmu-type = "riscv,sv32";
-                reg = <0>;
-                status = "okay";
-                L1: interrupt-controller {
-                    #interrupt-cells = <0x00000001>;
-                    interrupt-controller;
-                    compatible = "riscv,cpu-intc";
-                };
+        cpu@0 {
+            device_type = "cpu";
+            compatible = "riscv";
+            riscv,isa = "rv32ima";
+            mmu-type = "riscv,sv32";
+            reg = <0>;
+            status = "okay";
+            L0: interrupt-controller {
+                #interrupt-cells = <0x00000001>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
             };
-            cpu@1 {
-                device_type = "cpu";
-                compatible = "riscv";
-                riscv,isa = "rv32im";
-                mmu-type = "riscv,sv32";
-                reg = <1>;
-                status = "okay";
-                L2: interrupt-controller {
-                    #interrupt-cells = <0x00000001>;
-                    interrupt-controller;
-                    compatible = "riscv,cpu-intc";
-                };
-            };
-            cpu@2 {
-                device_type = "cpu";
-                compatible = "riscv";
-                riscv,isa = "rv32im";
-                mmu-type = "riscv,sv32";
-                reg = <2>;
-                status = "okay";
-                L3: interrupt-controller {
-                    #interrupt-cells = <0x00000001>;
-                    interrupt-controller;
-                    compatible = "riscv,cpu-intc";
-                };
+        };
+        cpu@1 {
+            device_type = "cpu";
+            compatible = "riscv";
+            riscv,isa = "rv32ima";
+            mmu-type = "riscv,sv32";
+            reg = <1>;
+            status = "okay";
+            L1: interrupt-controller {
+                #interrupt-cells = <0x00000001>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
             };
         };
 
+        cpu@2 {
+            device_type = "cpu";
+            compatible = "riscv";
+            riscv,isa = "rv32ima";
+            mmu-type = "riscv,sv32";
+            reg = <2>;
+            status = "okay";
+            L2: interrupt-controller {
+                #interrupt-cells = <0x00000001>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+            };
+        };
+
+        /*cpu@3 {
+            device_type = "cpu";
+            compatible = "riscv";
+            riscv,isa = "rv32ima";
+            mmu-type = "riscv,sv32";
+            reg = <3>;
+            status = "okay";
+            L3: interrupt-controller {
+                #interrupt-cells = <0x00000001>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+            };
+        };*/
+    };
+
     memory@80000000 {
         device_type = "memory";
-        reg = <0x80000000 0x04000000>;
+        reg = <0x80000000 0x02000000>;
     };
 
 	reserved-memory {
@@ -112,7 +127,11 @@
             compatible = "sifive,plic-1.0.0", "sifive,fu540-c000-plic";
             #interrupt-cells = <1>;
             interrupt-controller;
-            interrupts-extended = <&L1 11 &L1 9>;
+            interrupts-extended = <
+                &L0 11 &L0 9
+                &L1 11 &L1 9
+                &L2 11 &L2 9
+                /* &L3 11 &L3 9*/>;
             reg = <0x00C00000 0x400000>;
             riscv,ndev = <32>;
         };
