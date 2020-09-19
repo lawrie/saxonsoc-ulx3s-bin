@@ -34,7 +34,7 @@
                 compatible = "riscv,cpu-intc";
             };
         };
-        cpu@1 {
+        /*cpu@1 {
             device_type = "cpu";
             compatible = "riscv";
             riscv,isa = "rv32ima";
@@ -62,7 +62,7 @@
             };
         };
 
-        /*cpu@3 {
+        cpu@3 {
             device_type = "cpu";
             compatible = "riscv";
             riscv,isa = "rv32ima";
@@ -79,7 +79,7 @@
 
     memory@80000000 {
         device_type = "memory";
-        reg = <0x80000000 0x04000000>;
+        reg = <0x80000000 0x02000000>;
     };
 
 	reserved-memory {
@@ -129,9 +129,9 @@
             interrupt-controller;
             interrupts-extended = <
                 &L0 11 &L0 9
-                &L1 11 &L1 9
+                /*&L1 11 &L1 9
                 &L2 11 &L2 9
-                /* &L3 11 &L3 9*/>;
+                &L3 11 &L3 9*/>;
             reg = <0x00C00000 0x400000>;
             riscv,ndev = <32>;
         };
@@ -140,7 +140,7 @@
 	        compatible = "spinal-lib,gpio-1.0";
 	        interrupt-parent = <&plic>;
 	        ngpio = <24>;
-	        interrupts = <4 5 6 7>;
+	        interrupts = <0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4>;
 	        reg = <0x000000 0x1000>;
 	        gpio-controller;
 	        #gpio-cells = <2>;
@@ -229,7 +229,7 @@
                 compatible = "microchip,enc28j60";
                 reg = <2>;
                 interrupt-parent = <&gpioA>;
-                interrupts = <1 2>; //IRQ_TYPE_EDGE_FALLING
+                interrupts = <15 2>; //IRQ_TYPE_EDGE_FALLING
                 spi-max-frequency = <2000000>;
             };
         };
