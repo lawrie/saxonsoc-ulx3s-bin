@@ -1,8 +1,9 @@
 
 
 /dts-v1/;
-//include/ "dt-bindings/interrupt-controller/irq.h"
-//include/ "dt-bindings/gpio/gpio.h"
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 
 
@@ -139,7 +140,7 @@
         gpioA: gpio@0 {
 	        compatible = "spinal-lib,gpio-1.0";
 	        interrupt-parent = <&plic>;
-	        ngpio = <24>;
+	        ngpio = <32>;
 	        interrupts = <0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4>;
 	        reg = <0x000000 0x1000>;
 	        gpio-controller;
@@ -188,6 +189,14 @@
                 //interrupts = <2>;
         };
 
+        mac0: mac@40000 {
+            compatible = "spinal,lib_mac";
+            reg = <0x40000 0x1000>;
+            interrupt-parent = <&plic>;
+            interrupts = <3>;
+            mac-address = [00 01 23 34 56 78];
+        };
+
         spiA: spi@20000 {
             compatible = "spinal-lib,spi-1.0";
             #address-cells = <1>;
@@ -196,7 +205,7 @@
             clocks = <&apbA_clock 0>;
             cmd_fifo_depth = <256>;
             rsp_fifo_depth = <256>;
-            cs-gpios = <0>, <0>, <&gpioA 14 0>;
+            cs-gpios = <0>, <0>, <0>, <&gpioA 14 0>;
 
 	        flash: flash@0 {
 	            #address-cells = <1>;
@@ -225,14 +234,29 @@
                 spi-max-frequency = <25000000>;
             };
 
-            enc28j60: ethernet@2 {
-                compatible = "microchip,enc28j60";
+            spidev@2{
+                compatible = "spidev";
+                spi-max-frequency = <25000000>;
                 reg = <2>;
+            };
+
+            enc28j60: ethernet@3 {
+                compatible = "microchip,enc28j60";
+                reg = <3>;
                 interrupt-parent = <&gpioA>;
                 interrupts = <15 2>; //IRQ_TYPE_EDGE_FALLING
                 spi-max-frequency = <2000000>;
             };
         };
+    };
+
+    i2cA: i2cA {
+        compatible = "i2c-gpio";
+        sda-gpios = <&gpioA 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+        scl-gpios = <&gpioA 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+        i2c-gpio,delay-us = <3>;	
+        #address-cells = <1>;
+        #size-cells = <0>;
     };
 };
 
