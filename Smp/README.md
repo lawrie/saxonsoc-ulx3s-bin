@@ -183,8 +183,8 @@ For networking you need a copy of `images/interface` in /etc/network/interfaces 
 
 You can access GPIO pins via /sys/class/gpio
 
-There are 28 pins that are mapped on to GPIO numbers 480 - 507.
-The first 8 map to the leds, although led 1 is not connected as gpio[1] is currently used for the interrupt on the ENC28J60 device.
+There are 28 pins that are mapped on to sys/class/gpio numbers 480 - 507.
+The first 8 (GPIO 0 -7)  map to the leds. GPIO 26 and 27 are DC and RES on the Oled header.
 
 `echo number > export` makes the pin available to gpio
 `echo number > unexport` makes it unavailable.
@@ -203,7 +203,7 @@ do
   sleep  0.1
   echo   $i > gpio480/value
 done
-echo 488 > unexport
+echo 480 > unexport
 ```
 
 ## LCC compiler
