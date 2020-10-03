@@ -64,7 +64,7 @@ echo Y | sudo  mke2fs $SDCARD_P2
 mkdir -p sdcard
 sudo mount $SDCARD_P1 sdcard
 sudo cp images/dtb.12f sdcard/dtb
-sudo images/rootfs.cpio.uboot sdcard/rootfs.cpio.uboot
+sudo cp images/rootfs.cpio.uboot sdcard/rootfs.cpio.uboot
 sudo cp images/uImage sdcard/uImage
 sudo umount sdcard
 rm -r sdcard
@@ -196,7 +196,7 @@ For example, to blink led 0:
 ```
 #!/bin/sh
 cd /sys/class/gpio
-echo 488 > export
+echo 480 > export
 echo out > gpio480/direction
 for i in 1 0 1 0 1 0
 do
