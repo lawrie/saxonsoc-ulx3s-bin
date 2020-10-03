@@ -213,6 +213,8 @@ There is a native LCC C compiler available.
 To install it you should extract images/riscv32_lcc.tar.gz in the root direction ext2 parition to create a /riscv32_lcc directory, and then add /riscv32_lcc/lcc/bin
 and /riscv32_lcc/binutils/bin to your path.
 
+e.g. `export PATH=/riscv32_lcc/lcc/bin:/riscv32_lcc/binutils/bin:$PATH`
+
 You can compiler and build a c program by `lcc hello.c -o hello`.
 
 # mcpclock utility
