@@ -179,6 +179,8 @@ NC   - WOL
 
 For networking you need a copy of `images/interface` in /etc/network/interfaces and you should run the `images/create_keys.sh` script.
 
+The dropbear ssh server runs by default and allows you to ssh to the machine. You can use dbclient to ssh to other machines.
+
 ## GPIO
 
 You can access GPIO pins via /sys/class/gpio
@@ -217,7 +219,7 @@ e.g. `export PATH=/riscv32_lcc/lcc/bin:/riscv32_lcc/binutils/bin:$PATH`
 
 You can compiler and build a c program by `lcc hello.c -o hello`.
 
-# mcpclock utility
+## mcpclock utility
 
 The i2c RTC clock is supported. If you install a CR1225 battery in the battery holder (flat side away from the PCB), 
 the real time will be maintained when the board is not powered on.
@@ -240,6 +242,36 @@ There is software to write to an SSD1331 OLED display connected to the OLED head
 If you put all the .c and .h files in the current directory you can compile the test program by:
 
 `lcc ssd1331_test.c ssd1331.c spi.c wiring.c`
+
+## Using HDMI output
+
+Once Linux has booted, you can redirect the console output to an HDMI monitor, by `cat >/dev/tty0 2>&1`.
+
+## Using audio
+
+You can connect headphones or a speaker to the Ulx3s stereo output, and use Linux alsa audio, including playing mp3 files by, for example:
+
+`mpg123 -T -f 4096 file.mp3`
+
+You can use alsamixer to set the volume if you create a .soundrc file in the home directory with contents:
+
+```
+pcm.!default {
+    type            plug
+    slave.pcm       "softvol"   #make use of softvol
+}
+
+pcm.softvol {
+    type          softvol
+    slave {
+        pcm         "hw:0,0"      #redirect the output to dmix (instead of "hw:0,0")
+    }
+    control {
+        name        "PCM"       #override the PCM slider to set the softvol volume level globally
+        card     0
+    }
+}
+```
 
 ## Build from source
 
