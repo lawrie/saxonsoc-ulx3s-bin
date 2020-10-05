@@ -231,7 +231,7 @@ You can compile it by `lcc mcpclock.c -o mcpclock`.
 You can set the time by, for example:
 
 ```
-date -s "2020-10-03 11:23
+date -s "2020-10-03 11:23"
 ./mcpclock -w
 ```
 
