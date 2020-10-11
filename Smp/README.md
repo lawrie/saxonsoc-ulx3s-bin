@@ -253,7 +253,7 @@ You can connect headphones or a speaker to the Ulx3s stereo output, and use Linu
 
 `mpg123 -T -f 4096 file.mp3`
 
-You can use alsamixer to set the volume if you create a .soundrc file in the home directory with contents:
+You can use alsamixer to set the volume if you create a .asoundrc file in the home directory with contents:
 
 ```
 pcm.!default {
