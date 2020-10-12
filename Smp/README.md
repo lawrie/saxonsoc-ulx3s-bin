@@ -104,7 +104,7 @@ The ftp commands fare the same as above, except:
 put bitstreams/ulx3s_45f_2core_saxonsoc.bit fpga
 ```
 
-Make sure that `dtb`  in partition 1 on the SD card is a copy of `dtb.green85f`.
+Make sure that `dtb`  #in partition 1 on the SD card is a copy of `dtb.green85f`.
 
 ### Green 85F
 
@@ -114,7 +114,7 @@ The ftp commands fare the same as above, except:
 put bitstreams/ulx3s_85f_green_2core_saxonsoc.bit fpga
 ```
 
-Make sure that `dtb`  in partition 1 on the SD card is a copy of `dtb.green85f`.
+Make sure that `dtb` in partition 1 on the SD card is a copy of `dtb.green85f`.
 
 ### Blue 85F
 
@@ -122,7 +122,7 @@ Make sure that `dtb`  in partition 1 on the SD card is a copy of `dtb.green85f`.
 put bitstreams/ulx3s_85f_blue_4core_saxonsoc.bit fpga
 ```
 
-Make sure that `dtb`  in partition 1 on the SD card is a copy of `dtb.green85f`.
+Make sure that `dtb` in partition 1 on the SD card is a copy of `dtb.blue85f`.
 
 ## Connecting to Linux
 
