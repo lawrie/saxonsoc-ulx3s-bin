@@ -59,16 +59,16 @@ class Ulx4mSmpAbstract(cpuCount : Int, includeFpu: Boolean, includeUsbHost : Boo
     val flash = decoder.spiMasterEcp5FlashId(0)
     val sdcardPhy = decoder.phyId(1, -1)
     val sdcard = sdcardPhy.derivate(phy => master(phy.lazySclk(ssIdle = 1, sclkValue = false).toSpiEcp5()))
-    val md = decoder.mdioMasterId(1) //Ethernet phy
+    //val md = decoder.mdioMasterId(3) //Ethernet phy
   }
 
-  val mac = BmbMacEthGenerator(0x40000)
-  mac.connectInterrupt(plic, 3)
-  val eth = mac.withPhyRmii(
-    ffIn =  IFS1P3BX.apply,
-    ffOut = OFS1P3BX.apply,
-    withEr = false
-  )
+  //val mac = BmbMacEthGenerator(0x40000)
+  //mac.connectInterrupt(plic, 3)
+  //val eth = mac.withPhyRmii(
+  //  ffIn =  IFS1P3BX.apply,
+  //  ffOut = OFS1P3BX.apply,
+  //  withEr = false
+  //)
 
   implicit val bsbInterconnect = BsbInterconnectGenerator()
   val dma = new DmaSgGenerator(0x80000){
@@ -265,9 +265,9 @@ class Ulx4mSmp(cpuCount : Int, includeFpu: Boolean, includeUsbHost : Boolean, in
     hdmiCd.setInput(ClockDomain(DCCA.on(pll.clkout0)))
     system.vga.vgaCd.load(vgaCd.outputClockDomain)
 
-    val rmii_clk = in Bool()
-    system.mac.txCd.load(ClockDomain(DCCA.on(rmii_clk)))
-    system.mac.rxCd.load(ClockDomain(DCCA.on(rmii_clk)))
+    //val rmii_clk = in Bool()
+    //system.mac.txCd.load(ClockDomain(DCCA.on(rmii_clk)))
+    //system.mac.rxCd.load(ClockDomain(DCCA.on(rmii_clk)))
 
     val bb = ClockDomain(DCCA.on(pll.clkout1), False)(ODDRX1F())
     bb.D0 <> True
@@ -365,16 +365,16 @@ object Ulx4mSmpAbstract{
       rspFifoDepth = 256
     )
 
-    mac.parameter load MacEthParameter(
-      phy = PhyParameter(
-        txDataWidth = 2,
-        rxDataWidth = 2
-      ),
-      rxDataWidth = 32,
-      rxBufferByteSize = 4096,
-      txDataWidth = 32,
-      txBufferByteSize = 4096
-    )
+    //mac.parameter load MacEthParameter(
+    //  phy = PhyParameter(
+    //    txDataWidth = 2,
+    //    rxDataWidth = 2
+    //  ),
+    //  rxDataWidth = 32,
+    //  rxBufferByteSize = 4096,
+    //  txDataWidth = 32,
+    //  txBufferByteSize = 4096
+    //)
     vga.parameter load BmbVgaCtrlParameter(
       rgbConfig = RgbConfig(5,6,5)
     )
@@ -504,8 +504,8 @@ object Ulx4mSmpSystemSim {
       systemCd.holdDuration.load(63)
 
       val top = systemCd.outputClockDomain on new Ulx4mSmpAbstract(1, includeFpu = false, includeUsbHost = false, includeUsbDevice = false){
-        mac.txCd.load(systemCd.outputClockDomain)
-        mac.rxCd.load(systemCd.outputClockDomain)
+        //mac.txCd.load(systemCd.outputClockDomain)
+        //mac.rxCd.load(systemCd.outputClockDomain)
 
         vga.vgaCd.load(systemCd.outputClockDomain)
 
