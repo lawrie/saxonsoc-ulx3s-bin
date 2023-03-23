@@ -1,0 +1,352 @@
+BLOCK RESETPATHS;
+BLOCK ASYNCPATHS;
+## ULX3S v2.x.x and v3.0.x
+
+# The clock "usb" and "gpdi" sheet
+LOCATE COMP "clocking_clk_25mhz" SITE "G2";
+IOBUF PORT "clocking_clk_25mhz" PULLMODE=NONE IO_TYPE=LVCMOS33;
+FREQUENCY PORT "clocking_clk_25mhz" 25 MHZ;
+
+# JTAG and SPI FLASH voltage 3.3V and options to boot from SPI flash
+# write to FLASH possible any time from JTAG:
+#SYSCONFIG CONFIG_IOVOLTAGE=3.3 COMPRESS_CONFIG=ON MCCLK_FREQ=62 MASTER_SPI_PORT=ENABLE SLAVE_SPI_PORT=DISABLE SLAVE_PARALLEL_PORT=DISABLE;
+# write to FLASH possible from user bitstream:
+#SYSCONFIG CONFIG_IOVOLTAGE=3.3 COMPRESS_CONFIG=ON MCCLK_FREQ=62 MASTER_SPI_PORT=DISABLE SLAVE_SPI_PORT=DISABLE SLAVE_PARALLEL_PORT=DISABLE;
+
+## USBSERIAL FTDI-FPGA serial port "usb" sheet
+LOCATE COMP "system_uartA_uart_txd" SITE "N3"; # FPGA transmits to ftdi
+LOCATE COMP "system_uartA_uart_rxd" SITE "N4"; # FPGA receives from ftdi
+LOCATE COMP "ftdi_nrts" SITE "M3"; # FPGA receives
+LOCATE COMP "ftdi_ndtr" SITE "N1"; # FPGA receives
+LOCATE COMP "ftdi_txden" SITE "L3"; # FPGA receives
+IOBUF PORT "system_uartA_uart_txd" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_uartA_uart_rxd" PULLMODE=NONE IO_TYPE=LVCMOS33;
+IOBUF PORT "ftdi_nrts" PULLMODE=UP IO_TYPE=LVCMOS33;
+IOBUF PORT "ftdi_ndtr" PULLMODE=UP IO_TYPE=LVCMOS33;
+IOBUF PORT "ftdi_txden" PULLMODE=UP IO_TYPE=LVCMOS33;
+
+## LED indicators "blinkey" and "gpio" sheet
+LOCATE COMP "system_gpioA_gpio[7]" SITE "D3";
+LOCATE COMP "system_gpioA_gpio[6]" SITE "D1";
+LOCATE COMP "system_gpioA_gpio[5]" SITE "C1";
+LOCATE COMP "system_gpioA_gpio[4]" SITE "C2";
+LOCATE COMP "system_gpioA_gpio[3]" SITE "C3";
+LOCATE COMP "system_gpioA_gpio[2]" SITE "B2";
+LOCATE COMP "system_gpioA_gpio[1]" SITE "B3";
+LOCATE COMP "system_gpioA_gpio[0]" SITE "A3";
+IOBUF PORT "system_gpioA_gpio[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[2]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[3]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[4]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[5]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[6]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_gpioA_gpio[7]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+LOCATE COMP "system_gpioA_gpio[8]" SITE "R17";
+IOBUF PORT "system_gpioA_gpio[8]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+## Pushbuttons "blinkey", "flash", "power", "gpdi" sheet
+LOCATE COMP "clocking_reset" SITE "E1";  # btn[1]
+LOCATE COMP "btn[1]" SITE "D1";  # FIRE1
+LOCATE COMP "btn[2]" SITE "F1";  # FIRE2
+LOCATE COMP "btn[3]" SITE "A16"; # UP
+LOCATE COMP "btn[4]" SITE "B16";  # DOWN
+LOCATE COMP "btn[5]" SITE "B17";  # LEFT
+LOCATE COMP "btn[6]" SITE "C17"; # RIGHT
+IOBUF PORT "clocking_reset" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "btn[1]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "btn[2]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "btn[3]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "btn[4]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "btn[5]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "btn[6]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+
+## DIP switch "blinkey", "gpio" sheet
+LOCATE COMP "esp32_disable_sw" SITE "E8"; # SW1 ?
+LOCATE COMP "sw[1]" SITE "L18"; # SW2
+LOCATE COMP "sw[2]" SITE "K18"; # SW3
+LOCATE COMP "sw[3]" SITE "E7"; # SW4 ?
+IOBUF PORT "esp32_disable_sw" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "sw[1]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "sw[2]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+IOBUF PORT "sw[3]" PULLMODE=DOWN IO_TYPE=LVCMOS33;
+
+## SPI Flash chip "flash" sheet
+LOCATE COMP "system_spiA_flash_ss" SITE "R2";
+#LOCATE COMP "system_spiA_flash_sclk" SITE "U3";
+LOCATE COMP "system_spiA_flash_mosi" SITE "W2";
+LOCATE COMP "system_spiA_flash_miso" SITE "V2";
+LOCATE COMP "flash_holdn" SITE "W1";
+LOCATE COMP "flash_wpn" SITE "Y2";
+IOBUF PORT "system_spiA_flash_ss" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_flash_mosi" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_flash_miso" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "flash_holdn" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "flash_wpn" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+## SD card "sdcard", "usb" sheet
+LOCATE COMP "system_spiA_sdcard_sclk" SITE "G1"; # sd_sclk WiFi_GPIO14
+LOCATE COMP "system_spiA_sdcard_mosi" SITE "P1"; # sd_cmd_di (MOSI) WiFi GPIO15
+LOCATE COMP "system_spiA_sdcard_miso" SITE "B15"; # sd_dat0_do (MISO) WiFi GPIO2
+LOCATE COMP "sd_d[1]" SITE "R16"; # sd_dat1_irq WiFi GPIO4
+LOCATE COMP "sd_d[2]" SITE "E14"; # sd_dat2 WiFi_GPIO12
+LOCATE COMP "system_spiA_sdcard_ss" SITE "P2"; # sd_dat3_csn WiFi_GPIO13
+LOCATE COMP "sd_wp" SITE "P5"; # not connected
+LOCATE COMP "sd_cdn" SITE "N5"; # not connected
+IOBUF PORT "system_spiA_sdcard_sclk" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_sdcard_mosi" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_sdcard_miso" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "sd_d[1]" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "sd_d[2]" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4; # WiFi GPIO12 pulldown bootstrapping requirement
+IOBUF PORT "system_spiA_sdcard_ss" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "sd_wp" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "sd_cdn" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+## Audio 4-bit DAC "analog", "gpio" sheet
+# Output impedance 75 ohm.
+# Strong enough to drive 16 ohm earphones.
+LOCATE COMP "system_audioOut_outputs[0]" SITE "R1";
+LOCATE COMP "system_audioOut_outputs[1]" SITE "U1";
+IOBUF PORT "system_audioOut_outputs[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+IOBUF PORT "system_audioOut_outputs[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+
+LOCATE COMP "system_uartB_uart_txd" SITE "L1"; # Serial1 RX
+LOCATE COMP "system_uartB_uart_rxd" SITE "L4"; # Serial1 TX
+LOCATE COMP "system_noReset_wifi_gpio0" SITE "L2";
+
+IOBUF PORT "system_noReset_wifi_gpio0" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_uartB_uart_txd" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_uartB_uart_rxd" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+## WiFi ESP-32 "wifi", "usb", "flash" sheet
+# other pins are shared with GP/GN, SD card and JTAG
+LOCATE COMP "esp32_disable_wifi_en" SITE "F1"; # enable/reset WiFi
+LOCATE COMP "wifi_rxd" SITE "K3"; # FPGA transmits to WiFi
+LOCATE COMP "wifi_txd" SITE "K4"; # FPGA receives from WiFi
+#LOCATE COMP "wifi_gpio5" SITE "N4"; # WIFI LED
+
+IOBUF PORT "esp32_disable_wifi_en" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "wifi_rxd" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "wifi_txd" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "wifi_gpio5" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+## Second USB port "US2" going directly into FPGA "usb", "ram" sheet
+LOCATE COMP "system_usbAPort_0_dp" SITE "A6"; # single ended or differential input only
+LOCATE COMP "system_usbAPort_0_dm" SITE "B6";
+IOBUF PORT "system_usbAPort_0_dp" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+IOBUF PORT "system_usbAPort_0_dm" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+
+LOCATE COMP "system_usbKeyboardA_usb_dp" SITE "F4"; # single-ended bidirectional
+LOCATE COMP "system_usbKeyboardA_usb_dn" SITE "E3";
+IOBUF PORT "system_usbKeyboardA_usb_dp" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_usbKeyboardA_usb_dp" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+LOCATE COMP "system_usbPu_dp" SITE "F5"; # pull up/down control
+LOCATE COMP "system_usbPu_dm" SITE "E5";
+IOBUF PORT "system_usbPu_dp" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+IOBUF PORT "system_usbPu_dm" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+
+LOCATE COMP "system_usbBPhy_port_dif_dp" SITE "A6"; # single ended or differential input only
+LOCATE COMP "system_usbBPhy_port_dif_dm" SITE "B6";
+IOBUF PORT "system_usbBPhy_port_dif_dp" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+IOBUF PORT "system_usbBPhy_port_dif_dm" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+
+LOCATE COMP "system_usbBPhy_pullup" SITE "F5"; # pull up/down control
+IOBUF PORT "system_usbBPhy_pullup" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=16;
+
+LOCATE COMP "force_otg_usb_fpga_otg_id" SITE "D9";
+IOBUF  PORT "force_otg_usb_fpga_otg_id" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+LOCATE COMP "force_otg_n_extrst" SITE "U16";
+IOBUF  PORT "force_otg_n_extrst" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+## SDRAM "ram" sheet
+LOCATE COMP "clocking_sdram_clk" SITE "L20";
+LOCATE COMP "system_phyA_sdram_CKE" SITE "J17";
+LOCATE COMP "system_phyA_sdram_CSn" SITE "D20";
+LOCATE COMP "system_phyA_sdram_WEn" SITE "E19";
+LOCATE COMP "system_phyA_sdram_RASn" SITE "G16";
+LOCATE COMP "system_phyA_sdram_CASn" SITE "H20";
+LOCATE COMP "system_phyA_sdram_ADDR[0]" SITE "H16";
+LOCATE COMP "system_phyA_sdram_ADDR[1]" SITE "D19";
+LOCATE COMP "system_phyA_sdram_ADDR[2]" SITE "F16";
+LOCATE COMP "system_phyA_sdram_ADDR[3]" SITE "E18";
+LOCATE COMP "system_phyA_sdram_ADDR[4]" SITE "T19";
+LOCATE COMP "system_phyA_sdram_ADDR[5]" SITE "T18";
+LOCATE COMP "system_phyA_sdram_ADDR[6]" SITE "J16";
+LOCATE COMP "system_phyA_sdram_ADDR[7]" SITE "P18";
+LOCATE COMP "system_phyA_sdram_ADDR[8]" SITE "T20";
+LOCATE COMP "system_phyA_sdram_ADDR[9]" SITE "L19";
+LOCATE COMP "system_phyA_sdram_ADDR[10]" SITE "C20";
+LOCATE COMP "system_phyA_sdram_ADDR[11]" SITE "K19";
+LOCATE COMP "system_phyA_sdram_ADDR[12]" SITE "R20";
+LOCATE COMP "system_phyA_sdram_BA[0]" SITE "J19";
+LOCATE COMP "system_phyA_sdram_BA[1]" SITE "L16";
+LOCATE COMP "system_phyA_sdram_DQM[0]" SITE "E20";
+LOCATE COMP "system_phyA_sdram_DQM[1]" SITE "P20";
+LOCATE COMP "system_phyA_sdram_DQ[0]" SITE "J18";
+LOCATE COMP "system_phyA_sdram_DQ[1]" SITE "G20";
+LOCATE COMP "system_phyA_sdram_DQ[2]" SITE "G19";
+LOCATE COMP "system_phyA_sdram_DQ[3]" SITE "E16";
+LOCATE COMP "system_phyA_sdram_DQ[4]" SITE "F19";
+LOCATE COMP "system_phyA_sdram_DQ[5]" SITE "F20";
+LOCATE COMP "system_phyA_sdram_DQ[6]" SITE "H18";
+LOCATE COMP "system_phyA_sdram_DQ[7]" SITE "F18";
+LOCATE COMP "system_phyA_sdram_DQ[8]" SITE "P19";
+LOCATE COMP "system_phyA_sdram_DQ[9]" SITE "N17";
+LOCATE COMP "system_phyA_sdram_DQ[10]" SITE "M18";
+LOCATE COMP "system_phyA_sdram_DQ[11]" SITE "N20";
+LOCATE COMP "system_phyA_sdram_DQ[12]" SITE "N19";
+LOCATE COMP "system_phyA_sdram_DQ[13]" SITE "M20";
+LOCATE COMP "system_phyA_sdram_DQ[14]" SITE "M19";
+LOCATE COMP "system_phyA_sdram_DQ[15]" SITE "L17";
+IOBUF PORT "clocking_sdram_clk" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_phyA_sdram_CKE" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_CSn" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_WEn" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_RASn" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_CASn" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[2]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[3]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[4]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[5]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[6]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[7]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[8]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[9]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[10]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[11]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_ADDR[12]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_BA[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_BA[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQM[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQM[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[2]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[3]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[4]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[5]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[6]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[7]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[8]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[9]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[10]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[11]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[12]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[13]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[14]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+IOBUF PORT "system_phyA_sdram_DQ[15]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4 SLEWRATE=FAST;
+
+# GPDI differential interface (Video) "gpdi" sheet
+LOCATE COMP "system_hdmiPhy_gpdi_dp[0]" SITE "F17"; # Blue +
+LOCATE COMP "system_hdmiPhy_gpdi_dn[0]" SITE "G18"; # Blue -
+LOCATE COMP "system_hdmiPhy_gpdi_dp[1]" SITE "D18"; # Green +
+LOCATE COMP "system_hdmiPhy_gpdi_dn[1]" SITE "E17"; # Green -
+LOCATE COMP "system_hdmiPhy_gpdi_dp[2]" SITE "C18"; # Red +
+LOCATE COMP "system_hdmiPhy_gpdi_dn[2]" SITE "D17"; # Red -
+LOCATE COMP "system_hdmiPhy_gpdi_dp[3]" SITE "J20"; # Clock +
+LOCATE COMP "system_hdmiPhy_gpdi_dn[3]" SITE "K20"; # Clock -
+LOCATE COMP "system_hdmiPhy_gpdi_ethp" SITE "A19"; # Ethernet +
+LOCATE COMP "system_hdmiPhy_gpdi_ethn" SITE "B20"; # Ethernet -
+LOCATE COMP "system_hdmiPhy_gpdi_cec" SITE "A18";
+IOBUF PORT "system_hdmiPhy_gpdi_dp[0]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dn[0]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dp[1]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dn[1]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dp[2]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dn[2]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dp[3]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_dn[3]" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_ethp" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_ethn" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_hdmiPhy_gpdi_cec" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+LOCATE COMP "debug_jtag_tms" SITE "U17"; # gpio]5]
+LOCATE COMP "debug_jtag_tdo" SITE "P4"; # gpio[6]
+LOCATE COMP "debug_jtag_tdi" SITE "N2"; # gpio[7]
+LOCATE COMP "debug_jtag_tck" SITE "M17"; # gpio[8]
+
+IOBUF PORT "debug_jtag_tms" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "debug_jtag_tdo" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "debug_jtag_tdi" PULLMODE=NONE IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_jtag_tck" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+## SPI OLED DISPLAY SSD1331 (Color) or SSD1306 (B/W) "blinkey", "usb" sheet
+LOCATE COMP "system_spiA_oled_sclk" SITE "P17";
+LOCATE COMP "system_spiA_oled_mosi" SITE "P16";
+LOCATE COMP "system_spiA_oled_miso" SITE "L5";
+LOCATE COMP "system_spiA_oled_ss" SITE "P3";
+IOBUF PORT "system_spiA_oled_sclk" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spi_oled_mosi" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_oled_miso" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_oled_ss" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+LOCATE COMP "system_eth_mii_TX_D[1]" SITE "J4";  # J1_27- GN9  DIFF
+LOCATE COMP "system_eth_mii_TX_D[0]" SITE "K5";  # J1_29+ GP10 DIFF
+LOCATE COMP "system_eth_mii_TX_EN" SITE "K3";  # J1_29- GN10 DIFF
+LOCATE COMP "system_eth_mii_RX_D[1]" SITE "K2";  # J1_31+ GP11 DIFF WIFI_GPIO26
+LOCATE COMP "system_eth_mii_RX_D[0]" SITE "K1";  # J1_31- GN11 DIFF WIFI_GPIO25
+LOCATE COMP "system_eth_mii_RX_CRS_DV" SITE "J1";  # J1_33+ GP12 DIFF WIFI_GPIO33 PCLK
+LOCATE COMP "clocking_rmii_out_clk" SITE "H4";  # 25MHz to Ethernet chip
+LOCATE COMP "clocking_rmii_clk" SITE "H2";  # 50MHz out of Ethernet chip
+
+IOBUF PORT "system_eth_mii_TX_D[1]" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_eth_mii_TX_D[0]" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_eth_mii_TX_EN" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_eth_mii_RX_D[1]" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_eth_mii_RX_D[0]" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_eth_mii_RX_CRS_DV" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "clocking_rmii_clk" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "clocking_rmii_out_clk" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+LOCATE COMP "system_spiA_md_C" SITE "D16";  # J1_35+ GP13 DIFF WIFI_GPIO35
+LOCATE COMP "system_spiA_md_IO" SITE "N18";  # J1_35- GN13 DIFF WIFI_GPIO34
+IOBUF PORT "system_spiA_md_C" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_md_IO" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+
+LOCATE COMP "system_spiA_user_data[0]" SITE "N16"; # J2_5-  GN14 DIFF ADC0
+LOCATE COMP "system_spiA_user_data[1]" SITE "N5"; # J2_7-  GN15 DIFF ADC2
+LOCATE COMP "system_spiA_user_sclk" SITE "V1"; # J2_11- GN17 DIFF ADC6
+IOBUF PORT "system_spiA_user_data[0]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_user_data[1]" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "system_spiA_user_sclk" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+## PROGRAMN (reload bitstream from FLASH, exit from bootloader)
+# PCB v2.0.5 and higher
+LOCATE COMP "system_systemCtrl_logic_reloadn" SITE "E8";
+IOBUF PORT "system_systemCtrl_logic_reloadn" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+
+## SHUTDOWN "power", "ram" sheet (connected from PCB v1.7.5)
+# on PCB v1.7 shutdown is not connected to FPGA
+LOCATE COMP "system_systemCtrl_logic_shutdown" SITE "G16"; # FPGA receives
+IOBUF PORT "system_systemCtrl_logic_shutdown" PULLMODE=DOWN IO_TYPE=LVCMOS33 DRIVE=4;
+
+#LOCATE COMP "gpio[2]" SITE "M17"; - debug_jtag_tck
+#LOCATE COMP "gpio[3]" SITE "P17";   system_spiA_oled_sclk
+#LOCATE COMP "gpio[4]" SITE "P16"; - system_spiA_oled_mosi
+#LOCATE COMP "gpio[5]" SITE "N1"; - ok
+#LOCATE COMP "gpio[6]" SITE "R1"; - audio 0
+#LOCATE COMP "gpio[7]" SITE "P3"; - oled
+#LOCATE COMP "gpio[8]" SITE "P4"; - debug
+#LOCATE COMP "gpio[9]" SITE "L5"; - oled
+#LOCATE COMP "gpio[10]" SITE "K4"; - wifi tx
+#LOCATE COMP "gpio[11]" SITE "N2"; - debug
+#LOCATE COMP "gpio[12]" SITE "L2"; - system_noReset_wifi_gpio0
+#LOCATE COMP "gpio[13]" SITE "D6"; - system_noReset_wifi_gpio0
+#LOCATE COMP "gpio[14]" SITE "N18"; - system_spiA_md_IO
+#LOCATE COMP "gpio[15]" SITE "N16"; - ok
+#LOCATE COMP "gpio[16]" SITE "L1";  - uart rx
+#LOCATE COMP "gpio[17]" SITE "H3";
+#LOCATE COMP "gpio[18]" SITE "N5"; - sd csn
+#LOCATE COMP "gpio[19]" SITE "U1"; - Audio 1
+#LOCATE COMP "gpio[20]" SITE "L3"; - FTDI TX EN
+#LOCATE COMP "gpio[21]" SITE "L4"; - UART
+#LOCATE COMP "gpio[22]" SITE "M3"; - FTDI NRST
+#LOCATE COMP "gpio[23]" SITE "N4"; - UART A
+#LOCATE COMP "gpio[24]" SITE "N3"; - UART A
+#LOCATE COMP "gpio[25]" SITE "P5"; - SD_WP
+#LOCATE COMP "gpio[26]" SITE "V1"; -- 
+#LOCATE COMP "gpio[27]" SITE "R17"; --
